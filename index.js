@@ -1,4 +1,14 @@
-
+// ****************************************************************************
+//                                                                              //
+//                                                         :::      ::::::::    //
+//    Makefile                                           :+:      :+:    :+:    //
+//                                                     +:+ +:+         +:+      //
+//    By: ahadama- <ahadama-@42.rio>                    +#+  +:+     +#+        //
+//                                                 +#+#+#+#+#+   +#+            //
+//    Created: 2024/07/28 17:17:51 by ahadama-          #+#    #+#              //
+//    Updated: 2024/07/29 10:58:00 by ahadama-         ###   ########.fr        //
+//                                                                              //
+// ****************************************************************************
 
 const axios = require('axios');
 const fs = require('fs');
@@ -15,23 +25,18 @@ const ensureDirectoryExistence = filePath => {
   }
 };
 
-// Função principal
 const fetchAndSaveCorretoras = async () => {
   try {
-    // Certificar-se de que o diretório existe
+
     ensureDirectoryExistence(filePath);
 
-    // Fazer a requisição HTTP
     const response = await axios.get(apiUrl);
     const corretoras = response.data;
 
-    // Filtrar corretoras ativas
     const corretorasAtivas = corretoras.filter(corretora => corretora.status !== 'CANCELADA');
 
-    // Converter os dados para CSV
     const csv = parse(corretorasAtivas);
 
-    // Escrever o arquivo CSV
     fs.writeFileSync(filePath, csv, 'utf8');
 
     console.log('Arquivo CSV criado com sucesso em:', filePath);
@@ -40,5 +45,4 @@ const fetchAndSaveCorretoras = async () => {
   }
 };
 
-// Executar a função
 fetchAndSaveCorretoras();
