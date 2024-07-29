@@ -31,7 +31,8 @@ Este projeto é uma aplicação feita em Node.js que a listar as corretoras de v
 4. Execute o script:
     ```bash
     node index.js
-- O arquivo CSV será gerado em 'c:\temp\corretoras-ativas.csv'
+- Caso a pasta 'temp' tem não existir no diretório 'c:\', ela será criada.
+- O arquivo CSV será gerado no caminho 'c:\temp\corretoras-ativas.csv'
 
 ## Estrutura do Código
 - index.js: Contém o código principal que realiza a requisição à API, filtra os dados, converte para CSV e salva o arquivo.
